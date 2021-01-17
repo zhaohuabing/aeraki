@@ -1,0 +1,14 @@
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: test-trpc-route
+spec:
+  hosts:
+    - helloworld.trpc.test
+  http:
+    - name: "trpc-sample-server-v2-routes"
+      route:
+        - destination:
+            host: helloworld.trpc.test
+            subset: v2

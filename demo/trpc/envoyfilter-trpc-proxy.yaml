@@ -1,0 +1,34 @@
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: EnvoyFilter
+metadata:
+  name: trpc-sample-server
+spec:
+  configPatches:
+  - applyTo: NETWORK_FILTER
+    match:
+      listener:
+        name: 198.198.198.198_8000    # sed -i .bak "s/\${trpc-sample-server-vip}/`kubectl get svc trpc-sample-server -n trpc -o=jsonpath='{.spec.clusterIP}'`/" istio/envoyfilter-trpc-proxy.yaml
+        filterChain:
+          filter:
+            name: "envoy.filters.network.tcp_proxy"
+    patch:
+      operation: REPLACE
+      value:
+        name: envoy.filters.network.trpc_proxy
+        typed_config:
+          "@type": type.googleapis.com/envoy.config.filter.network.trpc_proxy.v3.TrpcProxy
+          stat_prefix: "outbound|8000||trpc-sample-server"
+          route_config:
+            name: default 
+            virtual_hosts:
+            - name: local_service
+              domains: ["*"]
+              routes:
+              - match:
+                  prefix: "/trpc.test.helloworld.Greeter"
+                route:
+                  cluster: "outbound|8000||trpc-sample-server"
+                  hash_policy:
+                  - connection_properties:
+                      source_ip: true

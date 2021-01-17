@@ -13,15 +13,18 @@ spec:
         ISTIO_META_DNS_CAPTURE: "true"
       proxyStatsMatcher:
         inclusionPrefixes:
-          - thrift
           - dubbo
+          - thrift
           - kafka
+          - zookeeper
+          - trpc
         inclusionRegexps:
           - .*dubbo.*
           - .*thrift.*
           - .*kafka.*
           - .*zookeeper.*
+          - .*trpc.*
   components:
     pilot:
       hub: aeraki
-      tag: 1.8.0-aeraki
+      tag: 1.8.0-aeraki-trpc

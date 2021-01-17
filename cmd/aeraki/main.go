@@ -26,6 +26,7 @@ import (
 	"github.com/aeraki-framework/aeraki/pkg/envoyfilter"
 	"github.com/aeraki-framework/aeraki/plugin/dubbo"
 	"github.com/aeraki-framework/aeraki/plugin/thrift"
+	"github.com/aeraki-framework/aeraki/plugin/trpc"
 
 	"github.com/aeraki-framework/aeraki/pkg/bootstrap"
 	"github.com/aeraki-framework/aeraki/pkg/model/protocol"
@@ -60,5 +61,6 @@ func initGenerators() map[protocol.Instance]envoyfilter.Generator {
 		protocol.Thrift:    thrift.NewGenerator(),
 		protocol.Kafka:     kafka.NewGenerator(),
 		protocol.Zookeeper: zookeeper.NewGenerator(),
+		protocol.TRPC:      trpc.NewGenerator(),
 	}
 }

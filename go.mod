@@ -27,6 +27,9 @@ replace istio.io/istio => github.com/zhaohuabing/istio v0.0.0-20201201123742-073
 // https://github.com/istio/api/pull/1774 add destination port support for envoyfilter
 replace istio.io/api => github.com/istio/api v0.0.0-20201217155105-21c3bd1ba1d3
 
+// Add tRPC config api
+replace github.com/envoyproxy/go-control-plane => github.com/zhaohuabing/go-control-plane v0.9.8-0.20210115032445-00648eaf19d3
+
 require (
 	github.com/cenkalti/backoff v2.2.1+incompatible
 	github.com/envoyproxy/go-control-plane v0.9.8-0.20201019204000-12785f608982

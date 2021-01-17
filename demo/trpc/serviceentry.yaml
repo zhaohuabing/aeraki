@@ -1,0 +1,21 @@
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: ServiceEntry
+metadata:
+  name: trpc-sample-server
+  annotations:
+    tRPCService: trpc.test.helloworld.Greeter
+spec:
+  hosts:
+    - helloworld.trpc.test
+  addresses:
+    - 198.198.198.198
+  ports:
+    - number: 8000
+      name: tcp-trpc
+      protocol: TCP
+  workloadSelector:
+    labels:
+      app: trpc-sample-server
+  resolution: STATIC
+

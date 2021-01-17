@@ -1,0 +1,91 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: trpc-sample-server-v1
+  labels:
+    app: trpc-sample-server
+spec:
+  selector:
+    matchLabels:
+      app: trpc-sample-server
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: trpc-sample-server
+        version: v1
+      annotations:
+        sidecar.istio.io/proxyImage: "aeraki/proxyv2:1.8.0-aeraki"
+    spec:
+      containers:
+        - name: trpc-sample-server
+          image: aeraki/trpc-sample-server
+          ports:
+            - containerPort: 8000
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: trpc-sample-server-v2
+  labels:
+    app: trpc-sample-server
+spec:
+  selector:
+    matchLabels:
+      app: trpc-sample-server
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: trpc-sample-server
+        version: v2
+      annotations:
+        sidecar.istio.io/proxyImage: "aeraki/proxyv2:1.8.0-aeraki"
+    spec:
+      containers:
+        - name: trpc-sample-server
+          image: aeraki/trpc-sample-server
+          ports:
+            - containerPort: 8000
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: trpc-sample-client
+  labels:
+    app: trpc-sample-client
+spec:
+  selector:
+    matchLabels:
+      app: trpc-sample-client
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: trpc-sample-client
+      annotations:
+        sidecar.istio.io/proxyImage: "aeraki/proxyv2:1.8.0-aeraki"
+        # sidecar.istio.io/inject: "false"
+    spec:
+      containers:
+        - name: trpc-sample-client
+          image: aeraki/trpc-sample-client
+          env:
+            - name: helloServer
+              value: "helloworld.trpc.test:8000"
+            - name: mode
+              value: "demo"
+---
+#apiVersion: v1
+#kind: Service
+#metadata:
+#  name: trpc-sample-server
+#spec:
+#  selector:
+#    app: trpc-sample-server
+#  ports:
+#    - name: tcp-trpc-hello-server
+#      protocol: TCP
+#      port: 8000
+#      targetPort: 8000

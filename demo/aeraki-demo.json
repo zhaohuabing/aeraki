@@ -752,25 +752,25 @@
       "pluginVersion": "7.2.1",
       "targets": [
         {
-          "expr": "envoy_outbound_2181__my_release_zookeeper_kafka_svc_cluster_local_zookeeper_getdata_resp_latency_bucket{le=\"1\", statefulset_kubernetes_io_pod_name=\"my-release-kafka-0\"} / ignoring (le) envoy_outbound_2181__my_release_zookeeper_kafka_svc_cluster_local_zookeeper_getdata_resp_latency_count *100",
+          "expr": "envoy_outbound_2181__my_release_zookeeper_kafka_svc_cluster_local_zookeeper_ping_response_latency_bucket{le=\"1\", statefulset_kubernetes_io_pod_name=\"my-release-kafka-0\"} / ignoring (le) envoy_outbound_2181__my_release_zookeeper_kafka_svc_cluster_local_zookeeper_ping_response_latency_count *100",
           "interval": "",
           "legendFormat": "Less than 1 ms",
           "refId": "A"
         },
         {
-          "expr": "envoy_outbound_2181__my_release_zookeeper_kafka_svc_cluster_local_zookeeper_getdata_resp_latency_bucket{le=\"10\", statefulset_kubernetes_io_pod_name=\"my-release-kafka-0\"} / ignoring (le) envoy_outbound_2181__my_release_zookeeper_kafka_svc_cluster_local_zookeeper_getdata_resp_latency_count *100",
+          "expr": "envoy_outbound_2181__my_release_zookeeper_kafka_svc_cluster_local_zookeeper_ping_response_latency_bucket{le=\"10\", statefulset_kubernetes_io_pod_name=\"my-release-kafka-0\"} / ignoring (le) envoy_outbound_2181__my_release_zookeeper_kafka_svc_cluster_local_zookeeper_ping_response_latency_count *100",
           "interval": "",
           "legendFormat": "Less than 10 ms",
           "refId": "B"
         },
         {
-          "expr": "envoy_outbound_2181__my_release_zookeeper_kafka_svc_cluster_local_zookeeper_getdata_resp_latency_bucket{le=\"100\", statefulset_kubernetes_io_pod_name=\"my-release-kafka-0\"} / ignoring (le) envoy_outbound_2181__my_release_zookeeper_kafka_svc_cluster_local_zookeeper_getdata_resp_latency_count *100",
+          "expr": "envoy_outbound_2181__my_release_zookeeper_kafka_svc_cluster_local_zookeeper_ping_response_latency_bucket{le=\"100\", statefulset_kubernetes_io_pod_name=\"my-release-kafka-0\"} / ignoring (le) envoy_outbound_2181__my_release_zookeeper_kafka_svc_cluster_local_zookeeper_ping_response_latency_count *100",
           "interval": "",
           "legendFormat": "Less than 100 ms",
           "refId": "C"
         },
         {
-          "expr": "envoy_outbound_2181__my_release_zookeeper_kafka_svc_cluster_local_zookeeper_getdata_resp_latency_bucket{le=\"1000\", statefulset_kubernetes_io_pod_name=\"my-release-kafka-0\"} / ignoring (le) envoy_outbound_2181__my_release_zookeeper_kafka_svc_cluster_local_zookeeper_getdata_resp_latency_count *100",
+          "expr": "envoy_outbound_2181__my_release_zookeeper_kafka_svc_cluster_local_zookeeper_ping_response_latency_bucket{le=\"1000\", statefulset_kubernetes_io_pod_name=\"my-release-kafka-0\"} / ignoring (le) envoy_outbound_2181__my_release_zookeeper_kafka_svc_cluster_local_zookeeper_ping_response_latency_count *100",
           "interval": "",
           "legendFormat": "Less than 1 m",
           "refId": "D"
@@ -778,7 +778,7 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Zookeeper GetData Latency",
+      "title": "Zookeeper Ping Latency",
       "type": "bargauge"
     },
     {
@@ -826,25 +826,25 @@
       "pluginVersion": "7.2.1",
       "targets": [
         {
-          "expr": "envoy_outbound_2181__my_release_zookeeper_kafka_svc_cluster_local_zookeeper_create_resp_latency_bucket{le=\"1\", statefulset_kubernetes_io_pod_name=\"my-release-kafka-0\"} / ignoring (le) envoy_outbound_2181__my_release_zookeeper_kafka_svc_cluster_local_zookeeper_create_resp_latency_count *100",
+          "expr": "envoy_outbound_2181__my_release_zookeeper_kafka_svc_cluster_local_zookeeper_connect_response_latency_bucket{le=\"1\", statefulset_kubernetes_io_pod_name=\"my-release-kafka-0\"} / ignoring (le) envoy_outbound_2181__my_release_zookeeper_kafka_svc_cluster_local_zookeeper_connect_response_latency_count *100",
           "interval": "",
           "legendFormat": "Less than 1 ms",
           "refId": "A"
         },
         {
-          "expr": "envoy_outbound_2181__my_release_zookeeper_kafka_svc_cluster_local_zookeeper_create_resp_latency_bucket{le=\"10\", statefulset_kubernetes_io_pod_name=\"my-release-kafka-0\"} / ignoring (le) envoy_outbound_2181__my_release_zookeeper_kafka_svc_cluster_local_zookeeper_create_resp_latency_count *100",
+          "expr": "envoy_outbound_2181__my_release_zookeeper_kafka_svc_cluster_local_zookeeper_connect_response_latency_bucket{le=\"10\", statefulset_kubernetes_io_pod_name=\"my-release-kafka-0\"} / ignoring (le) envoy_outbound_2181__my_release_zookeeper_kafka_svc_cluster_local_zookeeper_connect_response_latency_count *100",
           "interval": "",
           "legendFormat": "Less than 10 ms",
           "refId": "B"
         },
         {
-          "expr": "envoy_outbound_2181__my_release_zookeeper_kafka_svc_cluster_local_zookeeper_create_resp_latency_bucket{le=\"100\", statefulset_kubernetes_io_pod_name=\"my-release-kafka-0\"} / ignoring (le) envoy_outbound_2181__my_release_zookeeper_kafka_svc_cluster_local_zookeeper_create_resp_latency_count *100",
+          "expr": "envoy_outbound_2181__my_release_zookeeper_kafka_svc_cluster_local_zookeeper_connect_response_latency_bucket{le=\"100\", statefulset_kubernetes_io_pod_name=\"my-release-kafka-0\"} / ignoring (le) envoy_outbound_2181__my_release_zookeeper_kafka_svc_cluster_local_zookeeper_connect_response_latency_count *100",
           "interval": "",
           "legendFormat": "Less than 100 ms",
           "refId": "C"
         },
         {
-          "expr": "envoy_outbound_2181__my_release_zookeeper_kafka_svc_cluster_local_zookeeper_create_resp_latency_bucket{le=\"1000\", statefulset_kubernetes_io_pod_name=\"my-release-kafka-0\"} / ignoring (le) envoy_outbound_2181__my_release_zookeeper_kafka_svc_cluster_local_zookeeper_create_resp_latency_count *100",
+          "expr": "envoy_outbound_2181__my_release_zookeeper_kafka_svc_cluster_local_zookeeper_connect_response_latency_bucket{le=\"1000\", statefulset_kubernetes_io_pod_name=\"my-release-kafka-0\"} / ignoring (le) envoy_outbound_2181__my_release_zookeeper_kafka_svc_cluster_local_zookeeper_connect_response_latency_count *100",
           "interval": "",
           "legendFormat": "Less than 1 m",
           "refId": "D"
@@ -852,7 +852,7 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Zookeeper Create Latency",
+      "title": "Zookeeper Connect Response Latency",
       "type": "bargauge"
     },
     {
@@ -1047,6 +1047,331 @@
         "align": false,
         "alignLevel": null
       }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "${DS_PROMETHEUS}",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 49
+      },
+      "hiddenSeries": false,
+      "id": 24,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "7.2.1",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "sum(rate(envoy_trpc_outbound_8000__trpc_sample_server_trpc_svc_cluster_local_request_unary_call[5m]))",
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "tRPC Request Per Second",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "${DS_PROMETHEUS}",
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "unit": "ms"
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 49
+      },
+      "hiddenSeries": false,
+      "id": 22,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "7.2.1",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "histogram_quantile(0.95, sum(rate(envoy_trpc_outbound_8000__trpc_sample_server_trpc_svc_cluster_local_request_time_ms_bucket[5m])) by (le))",
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "tRPC Request Latency",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "ms",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "datasource": "${DS_PROMETHEUS}",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": null,
+            "filterable": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 57
+      },
+      "id": 23,
+      "options": {
+        "displayMode": "gradient",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true
+      },
+      "pluginVersion": "7.2.1",
+      "targets": [
+        {
+          "expr": "envoy_trpc_outbound_8000__trpc_sample_server_trpc_svc_cluster_local_request_time_ms_bucket{le=\"1\"}/ignoring (le) envoy_trpc_outbound_8000__trpc_sample_server_trpc_svc_cluster_local_request_time_ms_count *100",
+          "interval": "",
+          "legendFormat": "Less than 1 ms",
+          "refId": "A"
+        },
+        {
+          "expr": "envoy_trpc_outbound_8000__trpc_sample_server_trpc_svc_cluster_local_request_time_ms_bucket{le=\"10\"}/ignoring (le) envoy_trpc_outbound_8000__trpc_sample_server_trpc_svc_cluster_local_request_time_ms_count *100",
+          "interval": "",
+          "legendFormat": "Less than 10 ms",
+          "refId": "B"
+        },
+        {
+          "expr": "envoy_trpc_outbound_8000__trpc_sample_server_trpc_svc_cluster_local_request_time_ms_bucket{le=\"100\"}/ignoring (le) envoy_trpc_outbound_8000__trpc_sample_server_trpc_svc_cluster_local_request_time_ms_count *100",
+          "interval": "",
+          "legendFormat": "Less than 100 ms",
+          "refId": "C"
+        },
+        {
+          "expr": "envoy_trpc_outbound_8000__trpc_sample_server_trpc_svc_cluster_local_request_time_ms_bucket{le=\"1000\"}/ignoring (le) envoy_trpc_outbound_8000__trpc_sample_server_trpc_svc_cluster_local_request_time_ms_count *100",
+          "interval": "",
+          "legendFormat": "Less than 1 s",
+          "refId": "D"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "tRPC Request Latency Distribution",
+      "type": "bargauge"
+    },
+    {
+      "datasource": "${DS_PROMETHEUS}",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 58
+      },
+      "id": 25,
+      "options": {
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
+      },
+      "pluginVersion": "7.2.1",
+      "targets": [
+        {
+          "expr": "sum(rate(envoy_trpc_outbound_8000__trpc_sample_server_trpc_svc_cluster_local_response_success[5m]))/sum(rate(envoy_trpc_outbound_8000__trpc_sample_server_trpc_svc_cluster_local_request_unary_call[5m]))*100",
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "tRPC Request Success Rate",
+      "type": "gauge"
     }
   ],
   "refresh": "10s",
@@ -1064,5 +1389,5 @@
   "timezone": "",
   "title": "Aeraki Demo",
   "uid": "pgz7wp-Gz",
-  "version": 23
+  "version": 6
 }

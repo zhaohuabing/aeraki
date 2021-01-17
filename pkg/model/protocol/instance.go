@@ -36,6 +36,8 @@ const (
 	Kafka Instance = "Kafka"
 	// Zookeeper declares that the port carries Zookeeper traffic.
 	Zookeeper Instance = "Zookeeper"
+	// TRPC declares that the port carries tRPC traffic.
+	TRPC Instance = "tRPC"
 	// Unsupported - value to signify that the protocol is unsupported.
 	Unsupported Instance = "UnsupportedProtocol"
 )
@@ -57,6 +59,8 @@ func Parse(s string) Instance {
 		return Kafka
 	case "zookeeper":
 		return Zookeeper
+	case "trpc":
+		return TRPC
 	}
 
 	return Unsupported
