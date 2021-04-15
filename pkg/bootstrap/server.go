@@ -15,18 +15,11 @@
 package bootstrap
 
 import (
-	"context"
-
 	"github.com/aeraki-framework/aeraki/pkg/envoyfilter"
 
-	"github.com/aeraki-framework/aeraki/pkg/kube/controller"
-	"github.com/aeraki-framework/aeraki/pkg/model/protocol"
-	"github.com/aeraki-framework/aeraki/plugin/redis"
+	"github.com/aeraki-framework/aeraki/pkg/config"
 	"istio.io/istio/pilot/pkg/model"
 	istioconfig "istio.io/istio/pkg/config"
-	"sigs.k8s.io/controller-runtime/pkg/manager"
-
-	"github.com/aeraki-framework/aeraki/pkg/config"
 	"istio.io/pkg/log"
 )
 
@@ -39,21 +32,21 @@ type Server struct {
 	args                  *AerakiArgs
 	configController      *config.Controller
 	envoyFilterController *envoyfilter.Controller
-	crdController         manager.Manager
-	stopCRDController     func()
+	//crdController         manager.Manager
+	stopCRDController func()
 }
 
 // NewServer creates a new Server instance based on the provided arguments.
 func NewServer(args *AerakiArgs) *Server {
 	configController := config.NewController(args.IstiodAddr)
 	envoyFilterController := envoyfilter.NewController(configController.Store, args.Protocols)
-	crdController := controller.NewManager(args.Namespace, args.ElectionID, func() error {
+	/*crdController := controller.NewManager(args.Namespace, args.ElectionID, func() error {
 		envoyFilterController.ConfigUpdate(model.EventUpdate)
 		return nil
-	})
+	})*/
 
-	cfg := crdController.GetConfig()
-	args.Protocols[protocol.Redis] = redis.New(cfg, configController.Store)
+	//cfg := crdController.GetConfig()
+	//args.Protocols[protocol.Redis] = redis.New(cfg, configController.Store)
 
 	configController.RegisterEventHandler(args.Protocols, func(_, curr istioconfig.Config, event model.Event) {
 		envoyFilterController.ConfigUpdate(event)
@@ -63,7 +56,7 @@ func NewServer(args *AerakiArgs) *Server {
 		args:                  args,
 		configController:      configController,
 		envoyFilterController: envoyFilterController,
-		crdController:         crdController,
+		//crdController:         crdController,
 	}
 }
 
@@ -82,11 +75,11 @@ func (s *Server) Start(stop <-chan struct{}) {
 		s.configController.Run(stop)
 	}()
 
-	ctx, cancel := context.WithCancel(context.Background())
-	s.stopCRDController = cancel
-	go func() {
+	//ctx, cancel := context.WithCancel(context.Background())
+	//s.stopCRDController = cancel
+	/*go func() {
 		_ = s.crdController.Start(ctx)
-	}()
+	}()*/
 
 	s.waitForShutdown(stop)
 }

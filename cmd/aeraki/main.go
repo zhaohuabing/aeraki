@@ -33,7 +33,7 @@ import (
 )
 
 const (
-	defaultIstiodAddr = "istiod.istio-system:15010"
+	defaultIstiodAddr = "istiod-1-8-1:61000"
 	defaultNamespace  = "istio-system"
 	defaultElectionID = "aeraki-controller"
 	defaultLogLevel   = "default:info"

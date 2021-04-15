@@ -16,24 +16,30 @@ package envoyfilter
 
 import (
 	"context"
+	"errors"
 	"fmt"
+	"os"
 	"time"
+
+	"k8s.io/client-go/rest"
+
+	"k8s.io/client-go/tools/clientcmd"
 
 	"sigs.k8s.io/controller-runtime/pkg/client/config"
 
 	"github.com/gogo/protobuf/proto"
-
 	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
-
-	versionedclient "istio.io/client-go/pkg/clientset/versioned"
 
 	"github.com/aeraki-framework/aeraki/pkg/model"
 	"github.com/aeraki-framework/aeraki/pkg/model/protocol"
 	networking "istio.io/api/networking/v1alpha3"
 	"istio.io/client-go/pkg/apis/networking/v1alpha3"
+	versionedclient "istio.io/client-go/pkg/clientset/versioned"
 	istiomodel "istio.io/istio/pilot/pkg/model"
 	"istio.io/istio/pkg/config/schema/collections"
 	"istio.io/pkg/log"
+	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
+	"k8s.io/client-go/kubernetes"
 )
 
 const (
@@ -133,12 +139,35 @@ func (s *Controller) pushEnvoyFilters2APIServer() error {
 		return fmt.Errorf("failed to generate EnvoyFilter: %v", err)
 	}
 
-	config, err := config.GetConfig()
+	kubeConfig, err := config.GetConfig()
 	if err != nil {
 		return fmt.Errorf("can not get kubernetes config: %v", err)
 	}
 
-	ic, err := versionedclient.NewForConfig(config)
+	configStoreSecretNS := os.Getenv("istio-kube-config-store-secret-namespace")
+	configStoreSecret := os.Getenv("istio-kube-config-store-secret")
+	if configStoreSecret != "" && configStoreSecretNS != "" {
+		client, err := kubernetes.NewForConfig(kubeConfig)
+		if err != nil {
+			err = fmt.Errorf("failed to get Kube client: %v", err)
+			return err
+		}
+		secret, err := client.CoreV1().Secrets(configStoreSecretNS).Get(context.TODO(), configStoreSecret,
+			metav1.GetOptions{})
+		if err != nil {
+			err = fmt.Errorf("failed to get Istio config store secret: %v", err)
+			return err
+		}
+
+		rawConfig := secret.Data["kubeconfig.admin"]
+		kubeConfig, err = s.getRestConfig(rawConfig)
+		if err != nil {
+			err = fmt.Errorf("failed to get Istio config store secret: %v", err)
+			return err
+		}
+	}
+
+	ic, err := versionedclient.NewForConfig(kubeConfig)
 	if err != nil {
 		return fmt.Errorf("failed to create istio client: %v", err)
 	}
@@ -275,4 +304,26 @@ func (s *Controller) findRelatedVirtualService(service *networking.ServiceEntry)
 // ConfigUpdate sends a config change event to the pushChannel of connections
 func (s *Controller) ConfigUpdate(event istiomodel.Event) {
 	s.pushChannel <- event
+}
+
+func (s *Controller) getRestConfig(kubeConfig []byte) (*rest.Config, error) {
+	if len(kubeConfig) == 0 {
+		return nil, errors.New("kubeconfig is empty")
+	}
+
+	rawConfig, err := clientcmd.Load(kubeConfig)
+	if err != nil {
+		return nil, fmt.Errorf("kubeconfig cannot be loaded: %v", err)
+	}
+
+	if err := clientcmd.Validate(*rawConfig); err != nil {
+		return nil, fmt.Errorf("kubeconfig is not valid: %v", err)
+	}
+
+	clientConfig := clientcmd.NewDefaultClientConfig(*rawConfig, &clientcmd.ConfigOverrides{})
+	restConfig, err := clientConfig.ClientConfig()
+	if err != nil {
+		return nil, fmt.Errorf("failed to create kube clients: %v", err)
+	}
+	return restConfig, nil
 }

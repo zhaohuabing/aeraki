@@ -20,10 +20,14 @@ spec:
       serviceAccountName: aeraki
       containers:
         - name: aeraki
-          image: aeraki/aeraki:${BUILD_TAG}
+          image: aeraki/aeraki:tcm
           env:
             - name: istiodAddr
-              value: "istiod.istio-system:15010"
+              value: "istiod-1-8-1:61000"
+            - name: istio-kube-config-store-secret-namespace
+              value: "mesh-l47sbirs"
+            - name: istio-kube-config-store-secret
+              value: "istio-master-secret-mesh-l47sbirs"
 ---
 apiVersion: v1
 kind: ServiceAccount
@@ -126,4 +130,4 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     name: aeraki
-    namespace: ${NAMESPACE}
+    namespace: mesh-l47sbirs
