@@ -22,21 +22,20 @@ replace github.com/imdario/mergo => github.com/imdario/mergo v0.3.5
 require (
 	github.com/aeraki-mesh/meta-protocol-control-plane-api v1.0.6
 	github.com/cenkalti/backoff v2.2.1+incompatible
-	github.com/envoyproxy/go-control-plane v0.9.10-0.20210804155723-c55ac1656905
+	github.com/envoyproxy/go-control-plane v0.10.3
 	github.com/gogo/protobuf v1.3.2
 	github.com/golang/protobuf v1.5.2
-	github.com/google/go-cmp v0.5.6
+	github.com/google/go-cmp v0.5.9
 	github.com/google/go-github v17.0.0+incompatible
 	github.com/google/uuid v1.3.0
 	github.com/hashicorp/go-multierror v1.1.1
 	github.com/pkg/errors v0.9.1
 	github.com/zhaohuabing/debounce v1.0.0
 	go.uber.org/atomic v1.9.0
-	golang.org/x/net v0.0.0-20211015210444-4f30a5c0130f
-	golang.org/x/sync v0.0.0-20210220032951-036812b2e83c
-	golang.org/x/tools v0.1.8 // indirect
-	google.golang.org/grpc v1.40.0
-	google.golang.org/protobuf v1.27.1
+	golang.org/x/net v0.5.0
+	golang.org/x/sync v0.1.0
+	google.golang.org/grpc v1.53.0
+	google.golang.org/protobuf v1.28.1
 	istio.io/api v0.0.0-20210819145325-4e216752748c
 	istio.io/client-go v1.11.0
 	istio.io/gogo-genproto v0.0.0-20210806192525-32ebb2f9006c
