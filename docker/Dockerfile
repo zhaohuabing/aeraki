@@ -12,26 +12,18 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# FROM ubuntu:bionic
-# FROM praqma/network-multitool
-FROM alpine:3.13.5
-ENV AERAKI_ISTIOD_ADDR="istiod.istio-system:15010"
-ENV AERAKI_NAMESPACE="istio-system"
-ENV AERAKI_ISTIO_CONFIG_STORE_SECRET=""
-ENV AERAKI_XDS_LISTEN_ADDR=":15010"
-ENV AERAKI_LOG_LEVEL="all:info"
-ENV AERAKI_SERVER_ID=""
-ENV AERAKI_CLUSTER_ID=""
-ENV AERAKI_IS_MASTER="true"
+FROM alpine:3.17
 
+LABEL org.opencontainers.image.source="https://github.com/aeraki-mesh/aeraki"
+LABEL org.opencontainers.image.authors="zhaohuabing@gmail.com"
+LABEL org.opencontainers.image.documentation="https://aeraki.net"
 
-COPY aeraki /usr/local/bin/
-ENTRYPOINT /usr/local/bin/aeraki                                     \
-           -istiod-address=$AERAKI_ISTIOD_ADDR                       \
-           -namespace=$AERAKI_NAMESPACE                              \
-           -cluster-id=$AERAKI_CLUSTER_ID                            \
-           -config-store-secret=$AERAKI_ISTIO_CONFIG_STORE_SECRET    \
-           -xds-listen-address=$AERAKI_XDS_LISTEN_ADDR               \
-           -log-level=$AERAKI_LOG_LEVEL                              \
-           -server-id=$AERAKI_SERVER_ID                              \
-           -master=$AERAKI_IS_MASTER
+ARG AERAKI_ROOT_BIN_DIR
+ARG ARCH
+ARG OS
+
+RUN apk update && \
+    apk add curl
+
+COPY ${AERAKI_ROOT_BIN_DIR}/${ARCH}/${OS}/aeraki /usr/local/bin/
+ENTRYPOINT ["/usr/local/bin/aeraki"]
